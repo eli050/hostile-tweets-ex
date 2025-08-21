@@ -2,15 +2,8 @@
 # Using a 'slim' version is a good practice as it reduces the final image size.
 FROM python:3.13-slim
 
-# Set environment variables for Python
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Create a non-root user for security
-RUN groupadd -r appuser && useradd -r -g appuser appuser
-
 # Set the working directory inside the container to /app.
 # All subsequent commands (COPY, RUN, CMD) will be executed from this path.
 WORKDIR /app
@@ -30,17 +23,11 @@ COPY ./app /app/app
 # Copy the data directory (our source code) into the container at /app/data
 COPY ./data /app/data
 
-# Change ownership of the app directory to the non-root user
-RUN chown -R appuser:appuser /app
-
-# Switch to the non-root user
-USER appuser
-
 # Expose port 8080 to the outside world. This is a common convention for cloud platforms
 # like OpenShift, which often expect applications to listen on this port.
-EXPOSE 8080
+EXPOSE 8000
 
 # The command to run the application when the container starts.
 # We bind to '0.0.0.0' to make the server accessible from outside the container.
 # The path to the data_loader object is 'app.main:app'.
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
