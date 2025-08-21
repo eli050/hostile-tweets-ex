@@ -6,7 +6,7 @@ class Processor:
     def __init__(self, data: pd.DataFrame):
         self.data = data
         nltk.download('vader_lexicon')
-        self.weapons = self._read_weapons("../data/weapon_list.txt")
+        self.weapons = self._read_weapons("data/weapon_list.txt")
 
     @staticmethod
     def _read_weapons(file_path: str) -> list:

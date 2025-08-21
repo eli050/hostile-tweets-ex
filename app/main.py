@@ -1,4 +1,4 @@
-from manager import Manager
+from .manager import Manager
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 

@@ -1,7 +1,7 @@
 import os
 from pymongo import MongoClient
-from connection import ReadData
-from processor import Processor
+from .connection import ReadData
+from .processor import Processor
 
 MONGO_PORT = int(os.getenv("MONGO_PORT", "27017"))
 MONGO_HOST = os.getenv("MONGO_HOST", "mongo-app")

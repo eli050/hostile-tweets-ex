@@ -1,8 +1,6 @@
 import pandas as pd
 from pymongo import MongoClient
-from pprint import pprint
-import json
-from app.processor import Processor
+
 
 
 
